@@ -1,0 +1,102 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+  @include themify($themes) {
+    background-color: themed('bodyBackgroundColor');
+  }
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  padding-right: 0.7rem;
+  padding-left: 0.7rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1320px;
+
+  @include mQ($xxl) {
+    max-width: 1320px;
+  }
+
+  @include mQ($xl) {
+    max-width: 1140px;
+  }
+  @include mQ($lg) {
+    max-width: 960px;
+  }
+
+  @include mQ($md) {
+    max-width: 720px;
+  }
+  @include mQ($sm) {
+    max-width: 540px;
+  }
+}
+
+button {
+  border: 0;
+  outline: none;
+  background: $brand-color;
+  padding: 0px 0.5rem;
+  user-select: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  border-radius: 12px;
+  height: 2.6rem;
+  font-size: 16px;
+  box-shadow: $btn-box-shadow;
+  &:hover {
+    background: $brand-hover-color;
+  }
+}
+
+main {
+  min-height: 100vh;
+  @include themify($themes) {
+    background-color: themed('bodyBackgroundColor');
+  }
+}

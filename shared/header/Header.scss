@@ -1,0 +1,52 @@
+.header {
+  position: relative;
+  @include themify($themes) {
+    background-color: themed('bodyBackgroundColor');
+  }
+  @include themify($themes) {
+    box-shadow: themed('headerBoxShadow');
+  }
+  &__tabs {
+    @include layoutWithFlex(center, space-between, wrap);
+    max-width: 200px;
+    margin: auto;
+    &__item {
+      height: 60px;
+      margin: auto;
+      display: grid;
+      place-items: center;
+      border-bottom: 4px solid transparent;
+      transition: all 0.3s ease-in-out;
+      a {
+        @include themify($themes) {
+          color: themed('headerItemColor');
+        }
+        font-weight: 700;
+        svg {
+          margin-right: 6px;
+        }
+        @include layoutWithFlex(center, center);
+      }
+      &--active {
+        border-color: $brand-hover-color !important;
+        a {
+          @include themify($themes) {
+            color: themed('headerItemActiveColor');
+          }
+        }
+      }
+    }
+  }
+  &__toggler {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    svg {
+      cursor: pointer;
+      @include themify($themes) {
+        color: themed('headerItemActiveColor');
+      }
+    }
+  }
+}

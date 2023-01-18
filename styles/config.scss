@@ -1,0 +1,89 @@
+// Variables
+$brand-color: #11854f;
+$brand-hover-color: #00cd69;
+$btn-box-shadow: #00000013 0px 6px 10px;
+$card-bg: #1a2024;
+
+// Light Theme
+$light-background: #ffffff;
+$light-box-shadow: #00000049 0px 25px 20px -20px;
+$light-text-color: #5a5a5a;
+$light-active-color: #000000;
+
+// Dark Theme
+$dark-background: #141619;
+$dark-box-shadow: #7a7a7a49 0px 25px 20px -20px;
+$dark-text-color: #cec9c9;
+$dark-active-color: #ffffff;
+
+// break-points
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
+//Mixins
+$themes: (
+  light: (
+    bodyBackgroundColor: $light-background,
+    headerItemActiveColor: $light-active-color,
+    headerItemColor: $light-text-color,
+    headerBoxShadow: $light-box-shadow,
+    walletCardBg: $light-background,
+  ),
+  dark: (
+    bodyBackgroundColor: $dark-background,
+    headerItemActiveColor: $dark-active-color,
+    headerItemColor: $dark-text-color,
+    headerBoxShadow: $dark-box-shadow,
+    walletCardBg: $card-bg,
+  ),
+);
+
+@mixin themify($themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+@mixin layoutWithGrid($column: auto-fit, $min: 450px, $max: 1fr, $gap: null) {
+  display: grid;
+  grid-template-columns: repeat($column, minmax($min, $max));
+  @if $gap {
+    grid-gap: $gap;
+  }
+}
+
+@mixin layoutWithFlex($align, $justify, $wrap: null) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  @if $wrap {
+    flex-wrap: $wrap;
+  }
+}
+
+//Media Query Mixin
+@mixin mQ($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+}

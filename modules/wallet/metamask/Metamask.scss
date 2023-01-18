@@ -1,0 +1,21 @@
+.wallet {
+  margin: 70px 0;
+  &__metamask {
+    display: grid;
+    place-content: center;
+    img {
+      margin: auto;
+    }
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 0.2rem;
+      text-align: center;
+      margin: 0 0 50px 0;
+      font-weight: 700;
+      font-size: 35px;
+      @include themify($themes) {
+        color: themed('headerItemActiveColor');
+      }
+    }
+  }
+}

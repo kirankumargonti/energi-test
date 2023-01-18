@@ -1,0 +1,54 @@
+.price {
+  margin: 70px 0;
+  &__table {
+    margin: auto;
+    border-collapse: separate !important;
+    border-spacing: 0;
+    width: 600px;
+    border: 1px solid #5c5c5c;
+    border-radius: 10px;
+    overflow-x: auto;
+    @include themify($themes) {
+      color: themed('headerItemActiveColor');
+    }
+    @include mQ($sm){
+      width: 100%;
+    }
+    thead {
+      th {
+        text-align: left;
+        padding: 8px 15px;
+        border-bottom: 1px solid #5c5c5c;
+        &:nth-child(even) {
+          cursor: pointer;
+        }
+      }
+    }
+    tbody {
+      td {
+        padding: 15px 0 15px 15px !important;
+        text-align: left;
+        padding: 8px 20px;
+        border-bottom: 1px solid #5c5c5c;
+        &:nth-child(2) {
+          @include layoutWithFlex(center, flex-start, wrap);
+          img {
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+    .loading {
+      background: #b3b3b3;
+      animation: skeltonLoading 1s linear infinite alternate;
+    }
+  }
+}
+@keyframes skeltonLoading {
+  0% {
+    background: lightgrey;
+  }
+  100% {
+    background: #2b3641;
+  }
+}
